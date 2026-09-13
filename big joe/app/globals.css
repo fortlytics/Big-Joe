@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-base: #0A0A0A;
+  --color-surface: #111111;
+  --color-surface2: #1A1A1A;
+  --color-edge: rgba(255, 255, 255, 0.08);
+  --color-ink: #FFFFFF;
+  --color-mute: #9CA3AF;
+  --color-mute-dark: #4B5563;
+  --color-red: #DC2626;
+  --color-red-glow: #EF4444;
+  --color-blue: #2563EB;
+  --color-blue-glow: #3B82F6;
+  --color-ok: #22C55E;
+
+  --font-display: var(--font-orbitron), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-serif: var(--font-playfair), serif;
+}
+
+/* Default values for the font variables above, loaded via <link> tags in
+ * app/layout.tsx (see the comment there for why — short version: proven to
+ * build correctly everywhere, including sandboxes with restricted egress).
+ * If this ever moves to next/font/google for self-hosting, that's a
+ * one-file change: it sets these same variable names on <html>, which
+ * overrides these :root defaults automatically. Nothing else in the
+ * codebase references a literal font name, only these variables. */
+:root {
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-inter), sans-serif;
+}
+
+::selection {
+  background: var(--color-red);
+  color: var(--color-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-red-glow), var(--color-blue-glow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-blue-glow);
+  outline-offset: 2px;
+}
+
+.tech-label {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-mute);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
